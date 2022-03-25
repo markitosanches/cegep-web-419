@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                 <tr v-for="(quantity, key) in cart" :key="key">
-                    <td><img :src="'img/100/'+getPhoto(key)" alt="..." /></td>
+                    <td><img :src="'/img/100/'+getPhoto(key)" alt="..." /></td>
                     <td> {{ key }}</td>
                     <td> ${{ getPrice(key)}}</td>
                     <td class="center"> {{ quantity }}</td>

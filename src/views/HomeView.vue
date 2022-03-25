@@ -42,7 +42,8 @@
                   class="btn btn-outline-dark mt-auto"
                   @click="addToCart(product.name, i)"
                   >Add to cart</a
-                >
+                ><br>
+                <router-link :to="'/product/'+product.name">See more</router-link>
               </div>
             </div>
           </div>
