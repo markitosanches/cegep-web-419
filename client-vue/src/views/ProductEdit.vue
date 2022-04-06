@@ -12,10 +12,10 @@
             "
           >
             <div class="col-sm-12">
-              <h4 class="mb-3">Add new product</h4>
+              <h4 class="mb-3">Edit product</h4>
               <div class="needs-validation" novalidate>
                 <div class="row g-2">
-                  <div v-if="!submitted">
+                  <div>
                   <div class="col-12">
                     <label for="productName" class="form-label"
                       >Product Name</label
@@ -94,15 +94,15 @@
                       Valid photo path is required.
                     </div>
                   </div>
-                  <button class="w-100 btn btn-secondary btn-lg mt-3" type="button" @click="saveProduct" >Save </button>
+                  <button class="w-100 btn btn-success btn-lg mt-3" type="button" @click="updateProduct">Update </button>
                   </div>
-                  <div v-else>
+                  <div v-if="submitted">
                     <div  class="alert alert-success alert-dismissible fade show" role="alert">
                     <strong> You submitted successfully!</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                    <button class="w-100 btn btn-success btn-lg mt-3" type="button" @click="newProduct">New product </button>
                   </div>
+                  <button class="w-100 btn btn-danger btn-lg mt-3" type="button" @click="deleteProduct">Delete </button>
                   <hr class="my-4">
                 </div>
               </div>
@@ -114,11 +114,31 @@
   </template>
 
 <script>
+import ProductDataService from '@/services/ProductDataService'
+
 export default {
   data () {
     return {
-      product: {}
+      submitted: false,
+      product: {},
+      id: parseInt(this.$route.params.id)
     }
+  },
+  methods: {
+    updateProduct () {
+    },
+    deleteProduct () {
+      ProductDataService.delete(this.id)
+        .then(response => {
+          this.$router.push({ name: 'home' })
+        })
+    }
+  },
+  mounted () {
+    ProductDataService.get(this.id)
+      .then(response => {
+        this.product = response.data
+      })
   }
 }
 </script>
