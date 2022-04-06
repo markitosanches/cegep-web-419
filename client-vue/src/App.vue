@@ -52,6 +52,7 @@
   <router-view
   :inventory = "inventory"
   :addToCart = "addToCart"
+  :addInv = "addInventory"
   />
   <Sidebar
   v-if="showSideBar"
@@ -89,6 +90,9 @@ export default {
     },
     removeItem (name) {
       delete this.cart[name]
+    },
+    addInventory (data) {
+      this.inventory.push(data)
     }
   },
   computed: {

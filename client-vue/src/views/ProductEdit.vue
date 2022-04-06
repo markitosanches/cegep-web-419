@@ -114,35 +114,10 @@
   </template>
 
 <script>
-import ProductDataService from '@/services/ProductDataService'
-
 export default {
-  props: ['addInv'],
   data () {
     return {
-      submitted: false,
-      product: {
-        name: '',
-        photo: '',
-        price: '',
-        description: '',
-        type: ''
-      }
-    }
-  },
-  methods: {
-    saveProduct () {
-      ProductDataService.create(this.product)
-        .then(response => {
-          console.log(response.data.id)
-          this.product.id = response.data.id
-          this.addInv(this.product)
-          this.submitted = true
-        })
-    },
-    newProduct () {
-      this.submitted = false
-      this.product = {}
+      product: {}
     }
   }
 }

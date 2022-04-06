@@ -17,6 +17,13 @@
                         Add to cart
                     </button>
                 </div>
+                <hr class="my-4">
+                  <div class="d-flex">
+                    <router-link class="btn btn-outline-success mt-10" :to="'/product-edit/'+product.id">
+                    <i class="bi-pen me-1"></i>
+                    Edit product
+                    </router-link>
+                  </div>
             </div>
         </div>
     </div>
