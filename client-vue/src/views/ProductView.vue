@@ -9,7 +9,7 @@
                 <div class="fs-5 mb-5">
                     <span>${{ product.price.toFixed(2) }}</span>
                 </div>
-                <p class="lead">Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                <p class="lead">Description: {{ product.description}}</p>
                 <div class="d-flex">
                     <input class="form-control text-center me-3" id="inputQuantity" type="num" v-model.number="product.quantity" style="max-width: 3rem" />
                     <button class="btn btn-outline-dark flex-shrink-0" type="button" @click="addToCart(product.name, index)">

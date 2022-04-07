@@ -117,6 +117,7 @@
 import ProductDataService from '@/services/ProductDataService'
 
 export default {
+  props: ['removeInv', 'inventory', 'remove', 'updateInv'],
   data () {
     return {
       submitted: false,
@@ -126,12 +127,27 @@ export default {
   },
   methods: {
     updateProduct () {
+      ProductDataService.update(this.id, this.product)
+        .then(response => {
+          this.updateInv(this.productIndex, this.product)
+          this.submitted = true
+        })
     },
     deleteProduct () {
       ProductDataService.delete(this.id)
         .then(response => {
+          this.removeInv(this.productIndex)
+          this.remove(this.product.name)
           this.$router.push({ name: 'home' })
         })
+    }
+  },
+  computed: {
+    productIndex () {
+      const index = this.inventory.findIndex((p) => {
+        return p.id === this.id
+      })
+      return index
     }
   },
   mounted () {
